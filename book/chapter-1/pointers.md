@@ -128,7 +128,7 @@ no length associated with them.
 
 ```cpp
 int arr[3];
-int x* = &arr;
+int x* = arr;
 
 int y1 = arr[0];
 int y2 = *arr;
