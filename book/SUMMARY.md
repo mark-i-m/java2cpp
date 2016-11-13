@@ -14,7 +14,7 @@
 
 ## Objects (Part 1)
 
-* Classes, Structs, and Access Modifiers
+* [Classes, Structs, and Access Modifiers](chapter-2/classes.md)
 * Methods and Overloading
 * Inheritance and Overriding
     * Static and Dynamic Dispatch
