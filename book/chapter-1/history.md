@@ -31,6 +31,7 @@ was originally developed at Sun Microsystems (now Oracle) by James Gosling.
 
 However, because of the fundamentally different class of programs each language
 addresses (C++ is more of a systems language), both C++ and Java are commonly
-used.
+used. C++ and Java are both getting major new language features, as they enter a
+new era of programming.
 
 So... enough of the history lesson. Let's go on to C++.

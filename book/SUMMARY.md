@@ -5,11 +5,12 @@
 ## The Fundamentals
 
 * [History](chapter-1/history.md)
-* [Syntax](chapter-1/syntax.md)
-* Functions
-* Macros
+* [Basics](chapter-1/basics.md)
+* [Hello, World!](chapter-1/helloworld.md)
+* [Macros](chapter-1/macros.md)
 * Pointers
 * Runtime
+* Header files
 
 ## Objects (Part 1)
 
@@ -31,11 +32,11 @@
 * Copy and Move constructors
 * Copy and Move assignment
 * Casting
-
+* Strings
 
 ## Objects (Part 2)
 
-* Parametric Polymorphism
+* Parametric Polymorphism (and numeric args)
 * Operator Overloading
 * Friend Functions
 * Implicit/Explicit Construction
@@ -44,6 +45,7 @@
 
 * Type Aliases and Using
 * Lambdas
+* Exceptions
 * Packages and Namespaces
 * The STL
 * Policy Design Pattern
