@@ -8,9 +8,9 @@
 * [Basics](chapter-1/basics.md)
 * [Hello, World!](chapter-1/helloworld.md)
 * [Macros](chapter-1/macros.md)
-* Pointers
-* Runtime
-* Header files
+* [Pointers](chapter-1/pointers.md)
+* [Runtime](chapter-1/runtime.md)
+* [Header files](chapter-1/headers.md)
 
 ## Objects (Part 1)
 
@@ -29,6 +29,7 @@
     * Const References
     * R-value References
 * new, new[], delete[], delete
+* Memory leaks and GC
 * Copy and Move constructors
 * Copy and Move assignment
 * Casting
