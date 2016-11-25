@@ -69,6 +69,8 @@ To define a function in C++, you need to follow something like this:
 ```
 return_type name(type arg0, type arg1, ...) { // possibly no params
     // function body
+
+    return value; // Same return statement as in Java
 }
 ```
 
@@ -76,4 +78,39 @@ Calling a function is also similar to a Java method call:
 ```cpp
 int x = foo();
 bar(1, x, 3);
+```
+
+One other nice feature that C++ has: default parameter values.
+```cpp
+int foo(int a = 0) {
+    return a + 1;
+}
+
+int main() {
+    int x = foo();
+    int y = foo(1);
+}
+```
+
+In this example, the default value of `a` is 0. The user can then opt to either
+pass a value explicitly or rely on the default. So `x` is 1, and `y` is 2.
+
+Notice that parameters with default values must come after those without
+defaults, and that if you have multiple parameters with default values, you must
+specify all preceeding arguments. The following are both illegal:
+
+```cpp
+int foo(int a = 0, int b) { // ERROR: `b` does not have a default
+    return a + b;
+}
+```
+
+```cpp
+int foo(int a = 0, bool b = false) {
+    return a + 1;
+}
+
+int main() {
+    int x = foo(true);  // ERROR: need to pass a value for `a`
+}
 ```

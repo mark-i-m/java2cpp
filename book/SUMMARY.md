@@ -14,12 +14,16 @@
 
 ## Objects (Part 1)
 
-* [Classes, Structs, and Access Modifiers](chapter-2/classes.md)
-* Methods and Overloading
-* Inheritance and Overriding
-    * Static and Dynamic Dispatch
-    * Virtual and Pure Virtual
-    * Interfaces and Abstracts
+* [Classes and Structs](chapter-2/classes.md)
+* [Methods](chapter-2/methods.md)
+* [Subtyping](chapter-2/subtyping.md)
+* [Polymorphism](chapter-2/polymorphism.md)
+* [Interfaces and Abstracts](chapter-2/purevirt.md)
+
+## Example
+
+* [Description](chapter-3/desc.md)
+* [Brainstorming](chapter-3/brainstorming1.md)
 
 ## Memory Semantics
 
@@ -31,7 +35,6 @@
 * new, new[], delete[], delete
 * Memory leaks and GC
 * Copy and Move constructors
-* Copy and Move assignment
 * Casting
 * Strings
 
@@ -39,6 +42,7 @@
 
 * Parametric Polymorphism (and numeric args)
 * Operator Overloading
+    * Copy and Move assignment
 * Friend Functions
 * Implicit/Explicit Construction
 
