@@ -24,6 +24,7 @@
 
 * [Description](chapter-3/desc.md)
 * [Brainstorming](chapter-3/brainstorming1.md)
+* TODO
 
 ## Memory Semantics
 

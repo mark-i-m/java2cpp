@@ -35,3 +35,6 @@ than necessary, but I am trying to make this a good example.
 For simplicity, we will define levels in X.freddy files and have the user save
 their answer in X.path files, for various X. Also, we will avoid doing a lot of
 the input validation steps to keep things from getting boring.
+
+My implementation can be found in the GitHub repo for this
+[book](https://github.com/mark-i-m/java2cpp/tree/master/freddy).
