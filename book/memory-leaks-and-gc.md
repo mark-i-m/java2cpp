@@ -18,4 +18,6 @@ The JVM actually keeps track of which objects the user currently has a reference
 - the user does not have any reference to the object (e.g. no locals in any method that is executing).
 - there is no reachable object which contains a reference to the object.
 
-Usually, the JVM will only run the GC if memory starts to run low. Since GC can be rather slow and may require pausing the user's program, numerous schemes and heuristics have been proposed for improving GC performance.
+Usually, the JVM will only run the GC if memory starts to run low. Since GC can be rather slow and may require pausing the user's program, numerous schemes and heuristics have been proposed for improving GC performance. In Java, you may find that if your program creates and drops lots of object, the GC might make up a large portion of run time.
+
+In C++, none of this stuff exists...
