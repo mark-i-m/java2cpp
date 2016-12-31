@@ -82,5 +82,6 @@ For example, imagine a `List` type that has a `peek` method, which allows the us
 ```cpp
 class List {
     // some fields omited
+    
 }
 ```
