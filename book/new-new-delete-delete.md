@@ -83,7 +83,7 @@ The key is that there are actually two `new` operators: `new` and `new[]`. We ac
 delete[] my_nums;
 ```
 
-Either `delete` would have deallocated the memory properly, but only `delete[]` would correctly call the destructors for all of the objects in the array.
+Either `delete` would have deallocated the memory properly, but only `delete[]` would correctly call the destructors for all of the objects in the array. Note also, that calling `new[]` will call the default (no parameters) constructor to initialize the array.
 
 So can you find the bugs in the following programs (the answers are at the end):
 
