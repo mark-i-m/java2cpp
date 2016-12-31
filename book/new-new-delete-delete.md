@@ -73,7 +73,9 @@ delete my_nums;
 
 This seems innocent enough, but actually, we have a memory leak!
 
-Here's the thing. When we allocated `my_nums`, we claimed enough space for 10 `int`s. Remember, in C/C++, arrays are pointers, so even though we have an `int *` there is actually 10 `int`s-worth of space reserved, and all of the space needs to be freed, but the pointer does not know that! In fact, if you think about it, how did the `new` operator know to create 10 `int`s of space anyway?
+Here's the thing. When we allocated `my_nums`, we claimed enough space for 10 `int`s. Remember, in C/C++, arrays are pointers, so even though we have an `int *` there is actually 10 `int`s-worth of space reserved, and all of the space needs to be freed, but the pointer does not know that! Actually the problem is that a bit more subtle.
+
+Remember destructors? You just need to remember that the destructor will run just before the memory is actually deallocated. This gives the object and opportunity to do any clean-up it needs to do. You need to be careful to make sure that no object is destructed more than once and that you do not destruct an object that you still plan to use.
 
 The key is that there are actually two `new` operators: `new` and `new[]`. We actually used `new[]` here to create an array. Likewise, there are two `delete` operators: `delete` and `delete[]`. So the correct thing to do is this:
 
@@ -81,3 +83,74 @@ The key is that there are actually two `new` operators: `new` and `new[]`. We ac
 delete[] my_nums;
 ```
 
+Either `delete` would have deallocated the memory properly, but only `delete[]` would correctly call the destructors for all of the objects in the array.
+
+So can you find the bugs in the following programs (the answers are at the end):
+
+```cpp
+#include <iostream>
+
+static int foo_count = 0;
+
+struct Foo {
+    int x;
+
+    Foo() : x(foo_count++) {
+        std::cout << "New " << x << std::endl;
+    }
+
+    ~Foo() {
+        std::cout << "Delete" << x << std::endl;
+    }
+};
+
+int main() {
+    Foo *foos = new Foo[4];
+
+    std::cout << "Constructed" << std::endl;
+
+    foos[0] = Foo();
+
+    std::cout << "Replaced" << std::endl;
+
+    delete[] foos;
+}
+```
+
+```cpp
+#include <iostream>
+
+static int foo_count = 0;
+
+struct Foo {
+    int x;
+
+    Foo() : x(foo_count++) {
+        std::cout << "New " << x << std::endl;
+    }
+
+    ~Foo() {
+        std::cout << "Delete " << x << std::endl;
+    }
+};
+
+void replace(Foo *foos) {
+    delete &foos[0];
+    foos[0] = Foo();
+}
+
+int main() {
+    Foo *foos = new Foo[4];
+
+    std::cout << "Constructed" << std::endl;
+
+    replace(foos);
+
+    std::cout << "Replaced" << std::endl;
+
+    delete[] foos;
+}
+```
+
+1. One object is never destructed (object `0`).
+2. A lot of things are wrong here. We call `delete` and deallocate the *whole* array! But because we called `delete` and not `delete[]`, we only call the destructor for the first object. Then, we proceed to assign to the deallocated memory and even construct a new `Foo` there!. Then, `delete[]` is called again, which calls the destructors of the `Foo` objects in deallocated memory (which may have been overwritten already by someone else). Finally, the memory is double freed... On my machine, this example crashes with a segfault :(
