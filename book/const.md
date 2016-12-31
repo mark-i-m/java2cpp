@@ -55,11 +55,9 @@ x5 = &x0;                       // ok :)
 x5 = &x1;                       // compile error: *x5 is non-const but x1 is const
 ```
 
-Also note that a non-constant can be used anywhere where a constant is wanted. The `const`-ness of a variable is simply a promise that the variable's value will not be changed through the variable; the variable is promising that it will not change the value.
+Also note that a non-constant can be used anywhere where a constant is wanted. The `const`-ness of a variable is simply a promise that the variable's value will not be changed through the variable; the variable is promising that it will not change the value. However, the value may still be changeable from elsewhere (see the `x2` examples above).
 
-----
-
-Ok, so that's basics of `const`. Now, onto the fun stuff.
+There are two more really important uses of `const` in C++:
 
 First, functions and methods can declare their parameters to be `const`. This is essentially a promise from the function that it will not change the value of that parameter:
 ```cpp
@@ -67,7 +65,22 @@ void foo(const int *x) {
     // do stuff with x
 }
 ```
-Here, `foo` is promising that 
+Here, `foo` is promising that it will not change the value of `*x` (and the compiler will enforce that promise). So callers of `foo` know that it will never change the pointee.
 
-const parameters
-const methods
+Second, methods can declare that they don't change their object.
+
+```cpp
+struct Foo {
+    void print() const {
+        std::cout << "Hi" << std::endl;
+    }
+}
+```
+Another way of think about `const` methods is that `this` is of type `const Foo*`, rather than `Foo*`. This behavior can be extremely useful for dealing with `const` objects, and most standard library types overload methods to provide this behavior.
+
+For example, imagine a `List` type that has a `peek` method, which allows the user to get a pointer to the last element of the list. We may choose to implement it like this:
+```cpp
+class List {
+    // some fields omited
+}
+```
