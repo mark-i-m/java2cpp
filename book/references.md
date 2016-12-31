@@ -43,3 +43,21 @@ foo(x);
 std::cout << x << std::endl; // prints '1'
 ```
 
+Voila! That's about it. But before moving on, let me address `const` references.
+
+```cpp
+void foo(const int& x) {
+    x++;                 // compile error: x is const!
+}
+
+int x = 0;
+foo(x);
+```
+
+Just as in the previous chapter, declaring `x` as `const` represents a promise that `foo` will not change its value, even though `x` is a reference. This is even more useful when dealing with objects.
+```cpp
+void foo(const Foo& my_foo) {
+    my_foo.print();
+}
+```
+Here we can use the dot-operator, rather than the arrow-operator (`->`), because `my_foo` is not a pointer. However, we cannot call any methods of `Foo` that would mutate `my_foo`; we can only call `const` methods. Thus, references in this context represent a convenient way to pass objects without dealing with pointers and with all the benefits of having immutability. We can give the `foo` method our `Foo` object and let it do whatever it wants, and we know that it will never change because `my_foo` is const. At the same time, `foo` can avoid dealing with dereferences and arrows. And since references are essentially arrows under the hood, they are fast to pass around.

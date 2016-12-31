@@ -28,7 +28,6 @@
 * [More about Variables](more-about-variables.md)
     * [Const](const.md)
     * [References](references.md)
-    * Const References
     * R-value References
 * Memory leaks and GC
 * Copy and Move constructors
