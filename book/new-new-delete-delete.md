@@ -1,6 +1,6 @@
 # The Heap
 
-I briefly mentioned before that in C++ \`new\` has a special meaning different from Java. In Java, \`new\` is simply a keyword that causes a new object to be constructed. In C++, \`new\` is an operator \(which will become more significant to you when you read the chapter on operator overloading\), and it specifically _allocates_ and _constructs_ an object on the heap.
+I briefly mentioned before that in C++ `new` has a special meaning different from Java. In Java, \`new\` is simply a keyword that causes a new object to be constructed. In C++, \`new\` is an operator \(which will become more significant to you when you read the chapter on operator overloading\), and it specifically _allocates_ and _constructs_ an object on the heap.
 
 At this point, it is useful to take a step back and explain memory layout. Generally, memory is laid out in four main portions:
 
@@ -19,12 +19,11 @@ do_stuff_with_foo(foo);
 delete foo;
 ```
 
-After the \`delete\`, it is no longer valid to use the \`foo\` pointer, which now points to un-allocated memory.
 
+There are a few tricky parts to be careful of:
 
+1. You _must never_ dereference a pointer to unallocated memory. This means that you should make sure that if you pass a pointer to a function, it must be valid. It also means that you should make sure that nobody is using a pointer when you deallocate it. And it also means that if somebody passes a pointer to you, you should make sure they will not deallocate it while you are holding it. You should never dereference a pointer after freeing it. This is _undefined behavior_ :(
+2. You _must never_ deallocate a pointer twice. This _undefined behavior_ :(
+3. You _should_ deallocate a pointer exactly once. Otherwise, you have a _memory leak_. That memory will not be allocated to anyone else as long as it is allocated to you. If you lose the pointer, it is impossible to deallocate the memory. For short-running programs, this might be ok since the OS will reclaim all of the program's memory when it terminates. But for long-running programs, this can lead to unexpected and hard-to-reproduce crashes due to running out of memory.
 
-
-
-
-
-
+No pressure.
