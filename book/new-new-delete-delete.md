@@ -19,7 +19,6 @@ do_stuff_with_foo(foo);
 delete foo;
 ```
 
-
 There are a few tricky parts to be careful of:
 
 1. You _must never_ dereference a pointer to unallocated memory. This means that you should make sure that if you pass a pointer to a function, it must be valid. It also means that you should make sure that nobody is using a pointer when you deallocate it. And it also means that if somebody passes a pointer to you, you should make sure they will not deallocate it while you are holding it. You should never dereference a pointer after freeing it. This is _undefined behavior_ :(
@@ -30,6 +29,11 @@ No pressure.
 
 If you feel intimidated, it is because this can be a hard thing to do. Memory errors are a common source of bugs and security vulnerabilities. That's why some more modern languages opt to put restrictions on pointers. For example, Java does not have pointers at all, and memory management is done entirely through the JVM. Rust restricts aliasing pointers and forces the programmer to prove that pointers are valid when they are used. Go does not have a null pointer.
 
-So why go to all the trouble? There are a few compelling reasons:
+So why go to all the trouble? There are a few compelling reasons.
 
-1. 
+First, performance: when passing values to and returning from functions and methods, arguments and return values may be passed on the stack if they are large (as opposed to passing them through a processor register which is super fast). Copying large values to the stack is very slow for large data structures. Instead, passing a pointer to the structure is fast, since a pointer is a single word (4 or 8 bytes).
+
+Second, functionality: consider the following function:
+```cpp
+
+```
