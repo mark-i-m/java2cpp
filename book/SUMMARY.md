@@ -24,12 +24,12 @@
 * [TODO](todo.md)
 
 ## Memory Semantics
-* More about Variables
-    * Const
+* [new, new\[\], delete\[\], delete](new-new-delete-delete.md)
+* [More about Variables](more-about-variables.md)
+    * [Const](const.md)
     * References
     * Const References
     * R-value References
-* new, new\[\], delete\[\], delete
 * Memory leaks and GC
 * Copy and Move constructors
 * Casting
