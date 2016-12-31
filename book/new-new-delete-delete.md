@@ -27,3 +27,9 @@ There are a few tricky parts to be careful of:
 3. You _should_ deallocate a pointer exactly once. Otherwise, you have a _memory leak_. That memory will not be allocated to anyone else as long as it is allocated to you. If you lose the pointer, it is impossible to deallocate the memory. For short-running programs, this might be ok since the OS will reclaim all of the program's memory when it terminates. But for long-running programs, this can lead to unexpected and hard-to-reproduce crashes due to running out of memory.
 
 No pressure.
+
+If you feel intimidated, it is because this can be a hard thing to do. Memory errors are a common source of bugs and security vulnerabilities. That's why some more modern languages opt to put restrictions on pointers. For example, Java does not have pointers at all, and memory management is done entirely through the JVM. Rust restricts aliasing pointers and forces the programmer to prove that pointers are valid when they are used. Go does not have a null pointer.
+
+So why go to all the trouble? There are a few compelling reasons:
+
+1. 
