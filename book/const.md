@@ -55,16 +55,19 @@ x5 = &x0;                       // ok :)
 x5 = &x1;                       // compile error: *x5 is non-const but x1 is const
 ```
 
+Also note that a non-constant can be used anywhere where a constant is wanted. The `const`-ness of a variable is simply a promise that the variable's value will not be changed through the variable; the variable is promising that it will not change the value.
+
 ----
 
 Ok, so that's basics of `const`. Now, onto the fun stuff.
 
-First, functions and methods can declare their parameters to be `const`:
+First, functions and methods can declare their parameters to be `const`. This is essentially a promise from the function that it will not change the value of that parameter:
 ```cpp
-void foo(const int * const x) {
+void foo(const int *x) {
     // do stuff with x
 }
 ```
+Here, `foo` is promising that 
 
 const parameters
 const methods
