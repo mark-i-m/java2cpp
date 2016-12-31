@@ -43,7 +43,13 @@ foo(x);
 std::cout << x << std::endl; // prints '1'
 ```
 
-Voila! That's about it. But before moving on, let me address `const` references.
+Voila! That's about it. 
+
+----
+
+#### Const references
+
+Before moving on, let me address `const` references.
 
 ```cpp
 void foo(const int& x) {
@@ -61,3 +67,29 @@ void foo(const Foo& my_foo) {
 }
 ```
 Here we can use the dot-operator, rather than the arrow-operator (`->`), because `my_foo` is not a pointer. However, we cannot call any methods of `Foo` that would mutate `my_foo`; we can only call `const` methods. Thus, references in this context represent a convenient way to pass objects without dealing with pointers and with all the benefits of having immutability. We can give the `foo` method our `Foo` object and let it do whatever it wants, and we know that it will never change because `my_foo` is const. At the same time, `foo` can avoid dealing with dereferences and arrows. And since references are essentially arrows under the hood, they are fast to pass around.
+
+Also, I lied. You can take references to r-value in some cases...
+
+Imagine that we have the following function:
+```
+void foo(const int& x) {
+    std::cout << x << std::endl;
+}
+```
+
+Currently, you can do the following:
+```
+int x = 0;
+foo(x);
+```
+
+However, there is really nothing intuitively wrong with doing this:
+```
+foo(3);
+```
+
+After all, `x` is `const`! Nothing about the definition of `foo` can possibly depend on `x` being an l-value (having a memory location).
+
+Indeed, C++ agrees with you, and you can do that!
+
+**`const` references can be assigned r-values.**

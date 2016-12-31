@@ -24,14 +24,13 @@
 * [TODO](todo.md)
 
 ## Memory Semantics
-* [new, new\[\], delete\[\], delete](new-new-delete-delete.md)
-* [More about Variables](more-about-variables.md)
-    * [Const](const.md)
-    * [References](references.md)
-    * R-value References
-* Memory leaks and GC
-* Copy and Move constructors
-* Casting
+* [The Heap](new-new-delete-delete.md)
+* [Const](const.md)
+* [References](references.md)
+* [Memory leaks and GC](memory-leaks-and-gc.md)
+* [Copy semantics](copy-and-move-constructors.md)
+* [Move semantics](move-semantics.md)
+* [Casting](casting.md)
 * Strings
 
 ## Objects \(Part 2\)
