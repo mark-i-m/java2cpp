@@ -29,11 +29,37 @@ No pressure.
 
 If you feel intimidated, it is because this can be a hard thing to do. Memory errors are a common source of bugs and security vulnerabilities. That's why some more modern languages opt to put restrictions on pointers. For example, Java does not have pointers at all, and memory management is done entirely through the JVM. Rust restricts aliasing pointers and forces the programmer to prove that pointers are valid when they are used. Go does not have a null pointer.
 
-So why go to all the trouble? There are a few compelling reasons.
+So why go to all the trouble?
 
 First, performance: when passing values to and returning from functions and methods, arguments and return values may be passed on the stack if they are large (as opposed to passing them through a processor register which is super fast). Copying large values to the stack is very slow for large data structures. Instead, passing a pointer to the structure is fast, since a pointer is a single word (4 or 8 bytes).
 
 Second, functionality: consider the following function:
 ```cpp
-
+Foo get_foo() {
+    return Foo();
+}
 ```
+This function will create a `Foo` on the stack frame of `get_foo`. Then it will copy the `Foo` to the caller's stack upon return. This is slow, so we want to use pointers:
+```cpp
+Foo *get_foo() {
+    return &Foo();
+}
+```
+This, however, is _undefined behavior_! We are creating a `Foo` on the stack frame of `get_foo` and returning a pointer to that new object. But when `get_foo` returns, the stack frame is no longer valid! So we now have a pointer to the unallocated memory! Bad!
+
+Instead, we need to allocate the new `Foo` on the _heap_ and pass around its pointer.
+```cpp
+Foo *get_foo() {
+    return new Foo();
+}
+```
+Now, the following is safe to do:
+```cpp
+Foo *my_foo = get_foo();
+do_stuff_with_foo(my_foo);
+delete my_foo;
+```
+
+Great! That's pretty much it, except for one thing: arrays...
+
+Imagine doing the following:
