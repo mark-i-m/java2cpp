@@ -63,3 +63,21 @@ delete my_foo;
 Great! That's pretty much it, except for one thing: arrays...
 
 Imagine doing the following:
+```cpp
+int *my_nums = new int[10];
+
+// do some completely safe and correct stuff
+
+delete my_nums;
+```
+
+This seems innocent enough, but actually, we have a memory leak!
+
+Here's the thing. When we allocated `my_nums`, we claimed enough space for 10 `int`s. Remember, in C/C++, arrays are pointers, so even though we have an `int *` there is actually 10 `int`s-worth of space reserved, and all of the space needs to be freed, but the pointer does not know that! In fact, if you think about it, how did the `new` operator know to create 10 `int`s of space anyway?
+
+The key is that there are actually two `new` operators: `new` and `new[]`. We actually used `new[]` here to create an array. Likewise, there are two `delete` operators: `delete` and `delete[]`. So the correct thing to do is this:
+
+```cpp
+delete[] my_nums;
+```
+
