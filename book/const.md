@@ -94,3 +94,5 @@ class ListOfInts {
 ```
 
 So, we have overloaded the `peek` method. The first version is non-`const` and allows the user to obtain a _mutable_ pointer to values inside. The second version promises not to change the data structure and does not allow the user to change it either (since it returns a pointer to a `const int`.
+
+That's about it here. Pretty simple but very useful, especially with respect to references...
