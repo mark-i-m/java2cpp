@@ -29,24 +29,41 @@ delete[] my_arr; // we know that we are actually freeing the correct pointer her
 Note that the `const`-ness of the pointer is independent of the `const`-ness of the pointee:
 
 ```cpp
-int x0 = 0;                // normal int
-const int x1 = x0;         // constant int
-const int *x2 = &x0;       // constant pointer to non-constant int
-const int * const x3 = &x1;// constant pointer to constant int
-int * const x4 = &x1;      // non-constant pointer to constant int
+int x0 = 0;                     // normal int
+const int x1 = x0;              // constant int
+const int *x2 = &x0;            // non-constant pointer to constant int
+const int * const x3 = &x1;     // constant pointer to constant int
+int * const x4 = &x0;           // constant pointer to non-constant int
+int * x5 = &x0;                 // non-constant pointer to non-constant int
 
-x0 = 1;                    // ok :)
+x0 = 1;                         // ok :)
 
-x1 = x0;                   // compile error: x1 is const
+x1 = x0;                        // compile error: x1 is const
 
-*x2 = 2;                   // ok :)
-x2 = &x0;                  // compile error: x2 is const
+*x2 = 2;                        // compile error: *x2 is const
+x2 = &x0;                       // ok :)
+x2 = &x1;                       // ok :)
 
-*x3 = 2;                   // compile error: *x3 is const
-x3 = &x0;                  // compile error: x3 is const
+*x3 = 2;                        // compile error: x3 is const
+x3 = &x0;                       // compile error: *x3 is const
 
-*x4 = 2;                   // compile error: *x4 is const
-x4 = &x0;                  // ok :)
+*x4 = 2;                        // ok :)
+x4 = &x0;                       // compile error: x4 is const
+
+*x5 = 1;                        // ok :)
+x5 = &x0;                       // ok :)
+x5 = &x1;                       // compile error: *x5 is non-const but x1 is const
+```
+
+----
+
+Ok, so that's basics of `const`. Now, onto the fun stuff.
+
+First, functions and methods can declare their parameters to be `const`:
+```cpp
+void foo(const int * const x) {
+    // do stuff with x
+}
 ```
 
 const parameters
