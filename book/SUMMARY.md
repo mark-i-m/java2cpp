@@ -24,10 +24,10 @@
 * [TODO](todo.md)
 
 ## Memory Semantics
+* [Memory management](memory-leaks-and-gc.md)
 * [The Heap](new-new-delete-delete.md)
 * [Const](const.md)
 * [References](references.md)
-* [Memory leaks and GC](memory-leaks-and-gc.md)
 * [Copy semantics](copy-and-move-constructors.md)
 * [Move semantics](move-semantics.md)
 * [Casting](casting.md)
