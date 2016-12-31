@@ -20,11 +20,34 @@ void foo(int x) {
 The nice thing is that we can never accidentally change the value. This is very useful if we are trying to keep track of a pointer. We don't want to accidentally change or lose the pointer before we deallocate our memory:
 ```cpp
 const int *my_arr = new int[10];
-my_
+
+// do stuff with my_arr
+
+delete[] my_arr; // we know that we are actually freeing the correct pointer here
 ```
 
-const variables
-pointers to const values vs const pointers to values
+Note that the `const`-ness of the pointer is independent of the `const`-ness of the pointee:
+
+```cpp
+int x0 = 0;                // normal int
+const int x1 = x0;         // constant int
+const int *x2 = &x0;       // constant pointer to non-constant int
+const int * const x3 = &x1;// constant pointer to constant int
+int * const x4 = &x1;      // non-constant pointer to constant int
+
+x0 = 1;                    // ok :)
+
+x1 = x0;                   // compile error: x1 is const
+
+*x2 = 2;                   // ok :)
+x2 = &x0;                  // compile error: x2 is const
+
+*x3 = 2;                   // compile error: *x3 is const
+x3 = &x0;                  // compile error: x3 is const
+
+*x4 = 2;                   // compile error: *x4 is const
+x4 = &x0;                  // ok :)
+```
 
 const parameters
 const methods
