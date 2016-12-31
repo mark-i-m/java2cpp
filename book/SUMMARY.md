@@ -34,10 +34,9 @@
 * Strings
 
 ## Objects \(Part 2\)
-* Parametric Polymorphism \(and numeric args\)
-* Operator Overloading
-    * Copy and Move assignment
-* Friend Functions
+* [Parametric Polymorphism](parametric-polymorphism-and-numeric-args.md)
+* [Operator Overloading](operator-overloading.md)
+* [Friend Functions](friend-functions.md)
 * Implicit\/Explicit Construction
 
 ## Standard Library
