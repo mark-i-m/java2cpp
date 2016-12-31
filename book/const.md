@@ -78,10 +78,19 @@ struct Foo {
 ```
 Another way of think about `const` methods is that `this` is of type `const Foo*`, rather than `Foo*`. This behavior can be extremely useful for dealing with `const` objects, and most standard library types overload methods to provide this behavior.
 
-For example, imagine a `List` type that has a `peek` method, which allows the user to get a pointer to the last element of the list. We may choose to implement it like this:
+For example, imagine a `ListOfInts` type that has a `peek` method, which allows the user to get a pointer to the last integer in the list. We may choose to implement it like this:
 ```cpp
-class List {
+class ListOfInts {
     // some fields omited
     
+    int *peek() {
+        // do some stuff and return a pointer
+    }
+    
+    const int *peek() const {
+        // do some stuff and return a pointer
+    }
 }
 ```
+
+So, we have overloaded the `peek` method. The first version is non-`const` and allows the user to obtain a _mutable_ pointer to values inside. The second version promises not to change the data structure and does not allow the user to change it either (since it returns a pointer to a `const int`.
