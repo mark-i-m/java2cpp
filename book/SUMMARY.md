@@ -18,7 +18,7 @@
 * [Polymorphism](chapter-2/polymorphism.md)
 * [Interfaces and Abstracts](chapter-2/purevirt.md)
 
-## Example
+## Example: Freddy
 * [Description](chapter-3/desc.md)
 * [Brainstorming](chapter-3/brainstorming1.md)
 * [TODO](todo.md)
@@ -31,23 +31,23 @@
 * [Copy semantics](copy-and-move-constructors.md)
 * [Move semantics](move-semantics.md)
 * [Casting](casting.md)
-* Strings
+* [Strings](strings.md)
 
 ## Objects \(Part 2\)
 * [Parametric Polymorphism](parametric-polymorphism-and-numeric-args.md)
 * [Operator Overloading](operator-overloading.md)
 * [Friend Functions](friend-functions.md)
-* Implicit\/Explicit Construction
+* [Implicit\/Explicit Construction](implicitexplicit-construction.md)
 
 ## Standard Library
-* Type Aliases and Using
-* Lambdas
-* Exceptions
-* Packages and Namespaces
-* The STL
-* Policy Design Pattern
-* Iterators
+* [Type Aliases and Using](type-aliases-and-using.md)
+* [Lambdas](lambdas.md)
+* [Exceptions](exceptions.md)
+* [Packages and Namespaces](packages-and-namespaces.md)
+* [The STL](the-stl.md)
+* [Policy Design Pattern](policy-design-pattern.md)
+* [Iterators](iterators.md)
 
 ## Example: Implementing a Vector
-* TODO
+* [TODO](todo.md)
 
